@@ -37,7 +37,21 @@ class UpdateData extends Command
         }
 
         return $coin;
+    }
 
+    private function createCoinCXBatch(Batch $batch, Coin $coin, array $array)
+    {
+        CoinXBatch::create([
+            'batch_id' => $batch->id,
+            'coin_id' => $coin->id,
+            'current_price' => $array['current_price'],
+            'market_cap' => $array['market_cap'],
+            'market_cap_rank' => $array['market_cap_rank'],
+            'high_24h' => $array['high_24h'],
+            'low_24h' => $array['low_24h'],
+            'price_change_24h' => $array['price_change_24h'],
+            'price_change_percentage_24h' => $array['price_change_percentage_24h']
+        ]);
     }
 
     /**
@@ -51,17 +65,7 @@ class UpdateData extends Command
         $batch = Batch::create();
         foreach($data as $array) {
             $coin = $this->getCoin($array);
-            CoinXBatch::create([
-               'batch_id' => $batch->id,
-               'coin_id' => $coin->id,
-               'current_price' => $array['current_price'],
-               'market_cap' => $array['market_cap'],
-               'market_cap_rank' => $array['market_cap_rank'],
-               'high_24h' => $array['high_24h'],
-               'low_24h' => $array['low_24h'],
-               'price_change_24h' => $array['price_change_24h'],
-               'price_change_percentage_24h' => $array['price_change_percentage_24h']
-            ]);
+            $this->createCoinCXBatch($batch, $coin, $array);
         }
 
         return Command::SUCCESS;
