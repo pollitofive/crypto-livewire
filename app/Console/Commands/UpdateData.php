@@ -28,6 +28,7 @@ class UpdateData extends Command
     {
         $coin = Coin::firstOrNew([
             'key' => $array['id'],
+            'name' => $array['name'],
             'symbol' => $array['symbol'],
         ]);
 

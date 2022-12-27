@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('coins', function (Blueprint $table) {
             $table->id();
             $table->string('key',30);
+            $table->string('name',30);
             $table->string('symbol',10);
             $table->string('image',100);
             $table->timestamps();

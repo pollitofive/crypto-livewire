@@ -2,16 +2,23 @@
 
 namespace App\Http\Livewire;
 
-use Codenixsv\CoinGeckoApi\CoinGeckoClient;
-use Illuminate\Support\Facades\Http;
+use App\Models\CoinXBatch;
 use Livewire\Component;
 
 class CryptoList extends Component
 {
-    public function __construct()
+    public $data;
+
+    public function mount()
     {
-        $data = collect(Http::get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids='.env('API_LIST_IDS'))->json());
-        dd($data);
+        $this->data = $this->getCoins();
+    }
+
+    public function getCoins()
+    {
+        $this->data = CoinXBatch::getLastBatch();
+
+        return $this->data;
     }
 
     public function render()

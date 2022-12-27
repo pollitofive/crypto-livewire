@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Coin extends Model
 {
     use HasFactory;
-    protected $fillable = ['key','symbol','image'];
+    protected $fillable = ['key','name','symbol','image'];
+
+    public function coinxbatch()
+    {
+        return $this->hasOne(CoinXBatch::class)->latest();
+    }
 }
