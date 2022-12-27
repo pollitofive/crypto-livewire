@@ -69,6 +69,8 @@ class UpdateData extends Command
             $this->createCoinCXBatch($batch, $coin, $array);
         }
 
+        CoinXBatch::deleteOlders();
+
         return Command::SUCCESS;
     }
 }

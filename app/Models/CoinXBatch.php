@@ -21,4 +21,9 @@ class CoinXBatch extends Model
     public function coin() {
         return $this->belongsTo(Coin::class);
     }
+
+    public static function deleteOlders()
+    {
+        CoinXBatch::where('created_at', '<', date("Y-m-d"))->delete();
+    }
 }
