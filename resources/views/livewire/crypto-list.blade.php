@@ -17,7 +17,7 @@
                     @foreach($data as $coin)
                         <tr>
                             <td>
-                                <a wire:click="$emit('showCoin', {{ $coin->coin->id }})">
+                                <a wire:click="$dispatch('showCoin', { id : {{ $coin->coin->id }} })">
                                     <div class="d-flex align-items-center">
                                         <div class="me-2">
                                             <img src="{{ $coin->coin->image }}" alt="" class="avatar-xxs">

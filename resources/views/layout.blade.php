@@ -24,8 +24,8 @@
     <div class="row justify-content-center">
         <div class="col-xl-9">
             <div class="row">
-                <livewire:crypto-list>
-                <livewire:show>
+                <livewire:crypto-list></livewire:crypto-list>
+                <livewire:show />
             </div>
             <!--end row-->
         </div>
